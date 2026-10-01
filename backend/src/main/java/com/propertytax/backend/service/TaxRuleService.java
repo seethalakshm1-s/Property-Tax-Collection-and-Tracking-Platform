@@ -30,4 +30,18 @@ public class TaxRuleService {
     public void deleteTaxRule(Integer id) {
         taxRuleRepository.deleteById(id);
     }
+    public TaxRule updateTaxRule(Integer id, TaxRule taxRule) {
+
+    TaxRule existingTaxRule = taxRuleRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tax Rule not found"));
+
+    existingTaxRule.setUrbanOrRural(taxRule.getUrbanOrRural());
+    existingTaxRule.setPropertyType(taxRule.getPropertyType());
+    existingTaxRule.setUsageType(taxRule.getUsageType());
+    existingTaxRule.setRate(taxRule.getRate());
+    existingTaxRule.setEffectiveFrom(taxRule.getEffectiveFrom());
+    existingTaxRule.setEffectiveTo(taxRule.getEffectiveTo());
+
+    return taxRuleRepository.save(existingTaxRule);
+}
 }

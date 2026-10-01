@@ -31,7 +31,12 @@ public class ReceiptController {
     public Receipt saveReceipt(@RequestBody Receipt receipt) {
         return receiptService.saveReceipt(receipt);
     }
-
+    @PutMapping("/{id}")
+    public Receipt updateReceipt(
+        @PathVariable Integer id,
+        @RequestBody Receipt receipt) {
+    return receiptService.updateReceipt(id, receipt);
+    }
     @DeleteMapping("/{id}")
     public void deleteReceipt(@PathVariable Integer id) {
         receiptService.deleteReceipt(id);

@@ -30,11 +30,14 @@ public class PropertyTaxRuleController {
         return propertyTaxRuleService.getPropertyTaxRule(propertyId, ruleId);
     }
 
-    @PostMapping
-    public PropertyTaxRule savePropertyTaxRule(
-            @RequestBody PropertyTaxRule propertyTaxRule) {
+    @PutMapping("/{propertyId}/{ruleId}")
+    public PropertyTaxRule updatePropertyTaxRule(
+        @PathVariable Integer propertyId,
+        @PathVariable Integer ruleId,
+        @RequestBody PropertyTaxRule propertyTaxRule) {
 
-        return propertyTaxRuleService.savePropertyTaxRule(propertyTaxRule);
+    return propertyTaxRuleService.updatePropertyTaxRule(
+            propertyId, ruleId, propertyTaxRule);
     }
 
     @DeleteMapping("/{propertyId}/{ruleId}")

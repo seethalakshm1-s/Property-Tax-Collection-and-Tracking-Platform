@@ -30,6 +30,10 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+    this.createdAt = LocalDateTime.now();
+    }
     public Integer getUserId() {
         return userId;
     }

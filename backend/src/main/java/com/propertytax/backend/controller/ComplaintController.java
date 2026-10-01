@@ -31,7 +31,12 @@ public class ComplaintController {
     public Complaint saveComplaint(@RequestBody Complaint complaint) {
         return complaintService.saveComplaint(complaint);
     }
-
+    @PutMapping("/{id}")
+    public Complaint updateComplaint(
+        @PathVariable Integer id,
+        @RequestBody Complaint complaint) {
+    return complaintService.updateComplaint(id, complaint);
+    }
     @DeleteMapping("/{id}")
     public void deleteComplaint(@PathVariable Integer id) {
         complaintService.deleteComplaint(id);

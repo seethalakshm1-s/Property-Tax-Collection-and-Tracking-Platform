@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Register from "./Register";
 import Dashboard from "./Dashboard";
@@ -42,94 +41,20 @@ function App() {
     }
   };
 
-  /* =========================
-     REGISTER
-  ========================= */
-
   if (page === "register") {
-    return (
-      <div className="app-page">
-        <div className="form-card">
-
-          <Register />
-
-          <button
-            className="back-button"
-            onClick={() => setPage("login")}
-          >
-            Back to Login
-          </button>
-
-        </div>
-      </div>
-    );
+    return <Register />;
   }
-
-  /* =========================
-     DASHBOARD
-  ========================= */
 
   if (page === "dashboard") {
-    return (
-      <div className="app-page">
-
-        <Dashboard />
-
-        <div className="dashboard-actions">
-
-          <button
-            className="primary-button"
-            onClick={() => setPage("property")}
-          >
-            Register Property
-          </button>
-
-          <button
-            className="secondary-button"
-            onClick={() => setPage("login")}
-          >
-            Logout
-          </button>
-
-        </div>
-
-      </div>
-    );
+    return <Dashboard />;
   }
-
-  /* =========================
-     PROPERTY
-  ========================= */
 
   if (page === "property") {
-    return (
-      <div className="app-page">
-
-        <div className="form-card">
-
-          <Property />
-
-          <button
-            className="back-button"
-            onClick={() => setPage("dashboard")}
-          >
-            Back to Dashboard
-          </button>
-
-        </div>
-
-      </div>
-    );
+    return <Property />;
   }
-
-  /* =========================
-     LOGIN PAGE
-  ========================= */
 
   return (
     <div className="login-page">
-
-      {/* Header */}
 
       <header className="portal-header">
 
@@ -151,8 +76,6 @@ function App() {
         </div>
 
       </header>
-
-      {/* Login Section */}
 
       <main className="login-main">
 
@@ -202,7 +125,9 @@ function App() {
                   type="button"
                   className="forgot-button"
                   onClick={() =>
-                    alert("Please contact the administrator to reset your password.")
+                    alert(
+                      "Please contact the administrator to reset your password."
+                    )
                   }
                 >
                   Forgot Password?
@@ -251,8 +176,6 @@ function App() {
 
       </main>
 
-      {/* Footer */}
-
       <footer className="portal-footer">
 
         <span>
@@ -270,4 +193,3 @@ function App() {
 }
 
 export default App;
-

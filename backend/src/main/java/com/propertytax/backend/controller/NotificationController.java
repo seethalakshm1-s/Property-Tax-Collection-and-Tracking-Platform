@@ -31,6 +31,12 @@ public class NotificationController {
     public Notification saveNotification(@RequestBody Notification notification) {
         return notificationService.saveNotification(notification);
     }
+    @PutMapping("/{id}")
+    public Notification updateNotification(
+        @PathVariable Integer id,
+        @RequestBody Notification notification) {
+    return notificationService.updateNotification(id, notification);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteNotification(@PathVariable Integer id) {

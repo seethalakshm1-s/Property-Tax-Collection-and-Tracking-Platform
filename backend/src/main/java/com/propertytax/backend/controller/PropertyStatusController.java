@@ -31,7 +31,13 @@ public class PropertyStatusController {
     public PropertyStatus saveStatus(@RequestBody PropertyStatus propertyStatus) {
         return propertyStatusService.saveStatus(propertyStatus);
     }
-
+    @PutMapping("/{id}")
+    public PropertyStatus updatePropertyStatus(
+        @PathVariable Integer id,
+        @RequestBody PropertyStatus propertyStatus) {
+    return propertyStatusService.updatePropertyStatus(
+            id, propertyStatus);
+    }
     @DeleteMapping("/{id}")
     public void deleteStatus(@PathVariable Integer id) {
         propertyStatusService.deleteStatus(id);

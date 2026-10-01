@@ -31,7 +31,12 @@ public class TaxRuleController {
     public TaxRule saveTaxRule(@RequestBody TaxRule taxRule) {
         return taxRuleService.saveTaxRule(taxRule);
     }
-
+    @PutMapping("/{id}")
+    public TaxRule updateTaxRule(
+        @PathVariable Integer id,
+        @RequestBody TaxRule taxRule) {
+    return taxRuleService.updateTaxRule(id, taxRule);
+    }
     @DeleteMapping("/{id}")
     public void deleteTaxRule(@PathVariable Integer id) {
         taxRuleService.deleteTaxRule(id);

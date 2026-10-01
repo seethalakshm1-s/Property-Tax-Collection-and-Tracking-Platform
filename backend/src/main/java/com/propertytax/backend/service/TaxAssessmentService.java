@@ -30,4 +30,21 @@ public class TaxAssessmentService {
     public void deleteAssessment(Integer id) {
         taxAssessmentRepository.deleteById(id);
     }
+    public TaxAssessment updateTaxAssessment(Integer id, TaxAssessment taxAssessment) {
+
+    TaxAssessment existingAssessment = taxAssessmentRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tax Assessment not found"));
+
+    existingAssessment.setTaxYear(taxAssessment.getTaxYear());
+    existingAssessment.setTaxableValue(taxAssessment.getTaxableValue());
+    existingAssessment.setTaxRate(taxAssessment.getTaxRate());
+    existingAssessment.setPropertyId(taxAssessment.getPropertyId());
+    existingAssessment.setTaxAmount(taxAssessment.getTaxAmount());
+    existingAssessment.setDueDate(taxAssessment.getDueDate());
+    existingAssessment.setPaidAmount(taxAssessment.getPaidAmount());
+    existingAssessment.setBalanceAmount(taxAssessment.getBalanceAmount());
+    existingAssessment.setStatus(taxAssessment.getStatus());
+
+    return taxAssessmentRepository.save(existingAssessment);
+  }
 }

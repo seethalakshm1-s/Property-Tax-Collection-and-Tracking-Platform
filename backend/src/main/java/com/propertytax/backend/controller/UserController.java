@@ -34,10 +34,13 @@ public class UserController {
         return userService.getAllUsers();
     }
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Integer id, @RequestBody User user) {
-        return userService.updateUser(id, user);
-    }
+    public User updateUser(
+        @PathVariable Integer id,
+        @RequestBody User user) {
 
+    return userService.updateUser(id, user);
+    }
+    
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);

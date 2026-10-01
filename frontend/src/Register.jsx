@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 function Register() {
@@ -7,12 +6,19 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    if (!name || !phoneNumber || !email || !password) {
+      alert("Please fill all fields");
+      return;
+    }
+
     const user = {
-      name,
-      phoneNumber,
-      email,
-      password
+      name: name,
+      phoneNumber: phoneNumber,
+      email: email,
+      password: password
     };
 
     try {
@@ -24,91 +30,114 @@ function Register() {
         body: JSON.stringify(user)
       });
 
+      const data = await response.text();
+
       if (response.ok) {
         alert("Registration Successful");
+        setName("");
+        setPhoneNumber("");
+        setEmail("");
+        setPassword("");
       } else {
-        alert("Registration Failed");
+        alert("Registration Failed: " + data);
       }
     } catch (error) {
+      console.error(error);
       alert("Backend connection failed");
     }
   };
 
   return (
-    <div className="register-page">
+    <div style={{
+      minHeight: "100vh",
+      background: "#f4f7fb",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
+      <div style={{
+        width: "420px",
+        background: "white",
+        padding: "35px",
+        borderRadius: "8px",
+        boxShadow: "0 5px 20px rgba(0,0,0,0.08)"
+      }}>
+        <h2 style={{ textAlign: "center", color: "#172b4d" }}>
+          Create Account
+        </h2>
 
-      <div className="register-header">
-        <div className="logo-circle">PT</div>
-
-        <h1>Create Account</h1>
-
-        <p>
+        <p style={{ textAlign: "center", color: "#748196" }}>
           Register to access the Property Tax Portal
         </p>
-      </div>
 
-      <div className="register-form">
+        <form onSubmit={handleRegister}>
 
-        <div className="input-group">
           <label>Full Name</label>
-
           <input
             type="text"
-            placeholder="Enter your full name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Enter your full name"
+            style={inputStyle}
           />
-        </div>
 
-        <div className="input-group">
           <label>Phone Number</label>
-
           <input
-            type="text"
-            placeholder="Enter your phone number"
+            type="tel"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="Enter your phone number"
+            style={inputStyle}
           />
-        </div>
 
-        <div className="input-group">
           <label>Email Address</label>
-
           <input
             type="email"
-            placeholder="Enter your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email address"
+            style={inputStyle}
           />
-        </div>
 
-        <div className="input-group">
           <label>Password</label>
-
           <input
             type="password"
-            placeholder="Create a password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Create your password"
+            style={inputStyle}
           />
-        </div>
 
-        <button
-          className="login-button"
-          onClick={handleRegister}
-        >
-          Create Account
-        </button>
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: "14px",
+              marginTop: "10px",
+              background: "#174a7c",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer"
+            }}
+          >
+            Create Account
+          </button>
 
+        </form>
       </div>
-
-      <p className="register-note">
-        Your information is used for property tax account management.
-      </p>
-
     </div>
   );
 }
 
-export default Register;
+const inputStyle = {
+  width: "100%",
+  padding: "12px",
+  marginTop: "7px",
+  marginBottom: "18px",
+  boxSizing: "border-box",
+  border: "1px solid #c9d4e2",
+  borderRadius: "5px"
+};
 
+export default Register;

@@ -34,7 +34,13 @@ public class PropertyVerificationController {
             @RequestBody PropertyVerification propertyVerification) {
         return propertyVerificationService.saveVerification(propertyVerification);
     }
-
+    @PutMapping("/{id}")
+    public PropertyVerification updateVerification(
+        @PathVariable Integer id,
+        @RequestBody PropertyVerification propertyVerification) {
+    return propertyVerificationService.updateVerification(
+            id, propertyVerification);
+    }
     @DeleteMapping("/{id}")
     public void deleteVerification(@PathVariable Integer id) {
         propertyVerificationService.deleteVerification(id);

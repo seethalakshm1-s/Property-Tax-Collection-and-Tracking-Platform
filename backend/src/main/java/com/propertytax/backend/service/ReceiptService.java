@@ -30,4 +30,16 @@ public class ReceiptService {
     public void deleteReceipt(Integer id) {
         receiptRepository.deleteById(id);
     }
+    public Receipt updateReceipt(Integer id, Receipt receipt) {
+
+    Receipt existingReceipt = receiptRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Receipt not found"));
+
+    existingReceipt.setPaymentId(receipt.getPaymentId());
+    existingReceipt.setReceiptNumber(receipt.getReceiptNumber());
+    existingReceipt.setReceiptDate(receipt.getReceiptDate());
+    existingReceipt.setReceiptAmount(receipt.getReceiptAmount());
+
+    return receiptRepository.save(existingReceipt);
+}
 }

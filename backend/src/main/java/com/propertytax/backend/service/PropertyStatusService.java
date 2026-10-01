@@ -30,4 +30,20 @@ public class PropertyStatusService {
     public void deleteStatus(Integer id) {
         propertyStatusRepository.deleteById(id);
     }
+    public PropertyStatus updatePropertyStatus(
+        Integer id,
+        PropertyStatus propertyStatus) {
+
+    PropertyStatus existingStatus =
+            propertyStatusRepository.findById(id)
+                    .orElseThrow(() ->
+                            new RuntimeException("Property Status not found"));
+
+    existingStatus.setPropertyId(propertyStatus.getPropertyId());
+    existingStatus.setStatus(propertyStatus.getStatus());
+    existingStatus.setRemarks(propertyStatus.getRemarks());
+    existingStatus.setUpdatedDate(propertyStatus.getUpdatedDate());
+
+    return propertyStatusRepository.save(existingStatus);
+}
 }

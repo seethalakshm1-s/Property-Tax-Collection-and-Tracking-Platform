@@ -32,4 +32,20 @@ public class PropertyVerificationService {
     public void deleteVerification(Integer id) {
         propertyVerificationRepository.deleteById(id);
     }
+    public PropertyVerification updateVerification(
+        Integer id,
+        PropertyVerification propertyVerification) {
+
+    PropertyVerification existingVerification =
+            propertyVerificationRepository.findById(id)
+                    .orElseThrow(() ->
+                            new RuntimeException("Property Verification not found"));
+
+    existingVerification.setPropertyId(propertyVerification.getPropertyId());
+    existingVerification.setStatus(propertyVerification.getStatus());
+    existingVerification.setRemarks(propertyVerification.getRemarks());
+    existingVerification.setVerifiedDate(propertyVerification.getVerifiedDate());
+
+    return propertyVerificationRepository.save(existingVerification);
+}
 }

@@ -30,4 +30,19 @@ public class NotificationService {
     public void deleteNotification(Integer id) {
         notificationRepository.deleteById(id);
     }
+    public Notification updateNotification(Integer id, Notification notification) {
+
+    Notification existingNotification =
+            notificationRepository.findById(id)
+                    .orElseThrow(() ->
+                            new RuntimeException("Notification not found"));
+
+    existingNotification.setMessage(notification.getMessage());
+    existingNotification.setNotificationType(notification.getNotificationType());
+    existingNotification.setScheduledDate(notification.getScheduledDate());
+    existingNotification.setSentDate(notification.getSentDate());
+    existingNotification.setStatus(notification.getStatus());
+
+    return notificationRepository.save(existingNotification);
+}
 }

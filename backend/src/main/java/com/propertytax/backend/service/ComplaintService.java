@@ -30,4 +30,19 @@ public class ComplaintService {
     public void deleteComplaint(Integer id) {
         complaintRepository.deleteById(id);
     }
+    public Complaint updateComplaint(Integer id, Complaint complaint) {
+
+    Complaint existingComplaint = complaintRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Complaint not found"));
+
+    existingComplaint.setSubject(complaint.getSubject());
+    existingComplaint.setDescription(complaint.getDescription());
+    existingComplaint.setStatus(complaint.getStatus());
+    existingComplaint.setPropertyId(complaint.getPropertyId());
+    existingComplaint.setUserId(complaint.getUserId());
+    existingComplaint.setAdminRemarks(complaint.getAdminRemarks());
+    existingComplaint.setResolvedAt(complaint.getResolvedAt());
+
+    return complaintRepository.save(existingComplaint);
+}
 }

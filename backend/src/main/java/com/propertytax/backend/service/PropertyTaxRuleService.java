@@ -33,4 +33,21 @@ public class PropertyTaxRuleService {
         PropertyTaxRuleId id = new PropertyTaxRuleId(propertyId, ruleId);
         propertyTaxRuleRepository.deleteById(id);
     }
+    public PropertyTaxRule updatePropertyTaxRule(
+        Integer propertyId,
+        Integer ruleId,
+        PropertyTaxRule propertyTaxRule) {
+
+    PropertyTaxRuleId id = new PropertyTaxRuleId(propertyId, ruleId);
+
+    PropertyTaxRule existingPropertyTaxRule =
+            propertyTaxRuleRepository.findById(id)
+                    .orElseThrow(() ->
+                            new RuntimeException("Property Tax Rule not found"));
+
+    existingPropertyTaxRule.setPropertyId(propertyTaxRule.getPropertyId());
+    existingPropertyTaxRule.setRuleId(propertyTaxRule.getRuleId());
+
+    return propertyTaxRuleRepository.save(existingPropertyTaxRule);
+}
 }
