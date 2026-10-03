@@ -3,6 +3,7 @@ import Register from "./Register";
 import Dashboard from "./Dashboard";
 import Property from "./Property";
 import Tax from "./Tax";
+import Payment from "./Payment";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -43,19 +44,21 @@ function App() {
   };
 
   if (page === "register") {
-    return <Register />;
+    return <Register setPage={setPage} />;
   }
-
   if (page === "dashboard") {
     return <Dashboard setPage={setPage} />;
   }
 
   if (page === "property") {
-    return <Property />;
+      return <Property setPage={setPage} />;
   }
   if (page === "tax") {
-     return <Tax setPage={setPage} />;
-    }
+    return <Tax setPage={setPage} />;
+}
+  if (page === "payment") {
+  return <Payment setPage={setPage} />;
+}
   return (
     <div className="login-page">
 

@@ -301,7 +301,10 @@ function Dashboard({ setPage }) {
 
         <div className="quick-actions">
 
-          <div className="action-card">
+          <div className="action-card"
+          onClick={() => setPage("property")}
+          style={{ cursor: "pointer" }}
+          >
 
             <div className="action-icon">
               🏠
@@ -351,7 +354,11 @@ function Dashboard({ setPage }) {
           </div>
 
 
-          <div className="action-card">
+          <div
+  className="action-card"
+  onClick={() => setPage("payment")}
+  style={{ cursor: "pointer" }}
+>
 
             <div className="action-icon">
               💳

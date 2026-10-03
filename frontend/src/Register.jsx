@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Register() {
+  function Register({ setPage }) {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -125,11 +125,29 @@ function Register() {
           </button>
 
         </form>
+                <button
+          type="button"
+          onClick={() => setPage("login")}
+          style={{
+            marginTop: "15px",
+            width: "100%",
+            padding: "12px",
+            border: "1px solid #1f2937",
+            borderRadius: "6px",
+            backgroundColor: "#ffffff",
+            color: "#1f2937",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: "600",
+          }}
+        >
+          ← Back to Sign In
+        </button>
+
       </div>
     </div>
   );
 }
-
 const inputStyle = {
   width: "100%",
   padding: "12px",
@@ -139,5 +157,6 @@ const inputStyle = {
   border: "1px solid #c9d4e2",
   borderRadius: "5px"
 };
+
 
 export default Register;
