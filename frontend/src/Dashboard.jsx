@@ -1,4 +1,4 @@
-function Dashboard() {
+function Dashboard({ setPage }) {
   return (
     <div className="dashboard">
 
@@ -63,7 +63,7 @@ function Dashboard() {
 
           <div className="card-top">
             <div className="card-icon property-icon">
-              🏠
+              
             </div>
 
             <span className="card-status">
@@ -324,7 +324,11 @@ function Dashboard() {
           </div>
 
 
-          <div className="action-card">
+          <div
+          className="action-card"
+          onClick={() => setPage("tax")}
+          style={{ cursor: "pointer" }}
+          >
 
             <div className="action-icon">
               📄

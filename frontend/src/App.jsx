@@ -2,6 +2,7 @@ import { useState } from "react";
 import Register from "./Register";
 import Dashboard from "./Dashboard";
 import Property from "./Property";
+import Tax from "./Tax";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -46,13 +47,15 @@ function App() {
   }
 
   if (page === "dashboard") {
-    return <Dashboard />;
+    return <Dashboard setPage={setPage} />;
   }
 
   if (page === "property") {
     return <Property />;
   }
-
+  if (page === "tax") {
+     return <Tax setPage={setPage} />;
+    }
   return (
     <div className="login-page">
 
