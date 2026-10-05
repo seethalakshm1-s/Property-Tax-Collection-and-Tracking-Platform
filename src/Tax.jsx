@@ -17,20 +17,3 @@ function Tax() {
 export default Tax;
 
 
-
-
-
-importantttttt 3/0ct
-
-
-1. Registration ✅
-2. Login ✅
-3. Property Add 🔄
-4. Tax Assessment ✅
-5. Payment History
-6. Dashboard data
-7. GitHub final push
-8. MySQL cloud
-9. Spring Boot cloud
-10. React cloud
-11. Final website URL

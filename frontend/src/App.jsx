@@ -7,6 +7,7 @@ import Payment from "./Payment";
 
 function App() {
   const [page, setPage] = useState("login");
+  const [user, setUser] = useState(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
