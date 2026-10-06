@@ -1,6 +1,7 @@
+
 import { useState } from "react";
 
-function Login() {
+function Login({ setPage }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,27 +12,40 @@ function Login() {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/users");
+      const response = await fetch(
+        "http://localhost:8080/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       if (!response.ok) {
-        alert("Unable to connect to backend");
+        alert("Invalid email or password");
         return;
       }
 
-      const users = await response.json();
+      const user = await response.json();
 
-      const user = users.find(
-        (u) => u.email === email && u.password === password
-      );
+      alert("Login Successful");
 
-      if (user) {
-        alert("Login Successful");
-        console.log("Logged in user:", user);
+      console.log("Logged in user:", user);
+
+      if (user.role === "Admin") {
+        setPage("admin");
       } else {
-        alert("Invalid email or password");
+        setPage("dashboard");
       }
+
     } catch (error) {
       alert("Backend connection failed");
+      console.error(error);
     }
   };
 
@@ -87,4 +101,5 @@ function Login() {
   );
 }
 
-export default Login;onwebkitanimationiteration
+export default Login;
+

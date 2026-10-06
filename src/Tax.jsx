@@ -13,7 +13,4 @@ function Tax() {
     </div>
   );
 }
-
 export default Tax;
-
-
