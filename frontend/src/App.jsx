@@ -13,42 +13,48 @@ function App() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!email || !password) {
-      alert("Please enter your email and password");
+  if (!email || !password) {
+    alert("Please enter your email and password");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    if (!response.ok) {
+      alert("Invalid email or password");
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:8080/api/users");
+    const loggedInUser = await response.json();
 
-      if (!response.ok) {
-        alert("Unable to connect to backend");
-        return;
-      }
+    setUser(loggedInUser);
 
-      const users = await response.json();
-
-      const user = users.find(
-        (u) => u.email === email && u.password === password
-      );
-
-      if (user) {
-        setPage("dashboard");
-      } else {
-        alert("Invalid email or password");
-      }
-    } catch (error) {
-      alert("Backend connection failed");
+    if (loggedInUser.role === "Admin") {
+      setPage("admin");
+    } else {
+      setPage("dashboard");
     }
-  };
-
+  } catch (error) {
+    alert("Backend connection failed");
+  }
+};
   if (page === "register") {
     return <Register setPage={setPage} />;
   }
   if (page === "dashboard") {
-    return <Dashboard setPage={setPage} />;
+    return <Dashboard setPage={setPage} user={user} />;
   }
 
   if (page === "property") {

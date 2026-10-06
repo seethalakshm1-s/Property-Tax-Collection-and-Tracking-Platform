@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Dashboard({ setPage }) {
+function Dashboard({ setPage, user }) {
   const [properties, setProperties] = useState([]);
   const [assessments, setAssessments] = useState([]);
   const [payments, setPayments] = useState([]);
@@ -22,19 +22,34 @@ function Dashboard({ setPage }) {
       .catch((error) => console.error("Payment API Error:", error));
   }, []);
 
-  const totalProperties = properties.length;
+  const userProperties = properties.filter(
+  (property) => property.userId === user?.userId
+);
 
-  const totalTaxDue = assessments.reduce(
-    (total, item) => total + Number(item.balanceAmount || 0),
-    0
-  );
+const userAssessments = assessments.filter((assessment) =>
+  userProperties.some(
+    (property) => property.propertyId === assessment.propertyId
+  )
+);
 
-  const totalTaxPaid = payments.reduce(
-    (total, item) => total + Number(item.amount || 0),
-    0
-  );
+const totalProperties = userProperties.length;
 
-  const pendingAssessments = assessments.filter(
+const totalTaxDue = userAssessments.reduce(
+  (total, item) => total + Number(item.balanceAmount || 0),
+  0
+);
+ const userPayments = payments.filter((payment) =>
+  userAssessments.some(
+    (assessment) => assessment.assessmentId === payment.assessmentId
+  )
+);
+
+const totalTaxPaid = userPayments.reduce(
+  (total, item) => total + Number(item.amount || 0),
+  0
+);
+
+  const pendingAssessments = userAssessments.filter(
     (item) =>
       item.status === "Pending" ||
       item.status === "Partial" ||
@@ -47,16 +62,16 @@ function Dashboard({ setPage }) {
       maximumFractionDigits: 2,
     })}`;
 
-  const latestAssessment = assessments.length
-    ? [...assessments].sort(
+  const latestAssessment = userAssessments.length
+    ? [...userAssessments].sort(
         (a, b) =>
           new Date(b.dueDate || "1900-01-01") -
           new Date(a.dueDate || "1900-01-01")
       )[0]
     : null;
 
-  const latestPayment = payments.length
-    ? [...payments].sort(
+    const latestPayment = userPayments.length
+  ? [...userPayments].sort(
         (a, b) =>
           new Date(b.paymentDate || "1900-01-01") -
           new Date(a.paymentDate || "1900-01-01")
@@ -138,7 +153,7 @@ function Dashboard({ setPage }) {
             gap: "11px",
           }}
         >
-          <div
+                   <div
             style={{
               width: "40px",
               height: "40px",
@@ -161,7 +176,7 @@ function Dashboard({ setPage }) {
                 fontWeight: "700",
               }}
             >
-              Property Owner
+              {user?.name || "Property Owner"}
             </div>
 
             <div
@@ -214,15 +229,15 @@ function Dashboard({ setPage }) {
               CITIZEN PROPERTY TAX PORTAL
             </div>
 
-            <h1
-              style={{
-                margin: 0,
-                fontSize: "30px",
-                fontWeight: "750",
-              }}
-            >
-              Welcome back!
-            </h1>
+ <h1
+  style={{
+    margin: 0,
+    fontSize: "30px",
+    fontWeight: "750",
+  }}
+>
+  Welcome back, {user?.name || "Citizen"}!
+</h1>
 
             <p
               style={{
@@ -326,8 +341,8 @@ function Dashboard({ setPage }) {
 
             <div style={bottomLineStyle}>
               <span style={{ color: "#1d7547" }}>
-                {payments.length} successful payment
-                {payments.length !== 1 ? "s" : ""}
+                {userPayments.length} successful payment
+                {userPayments.length !== 1 ? "s" : ""}
               </span>
             </div>
           </div>
@@ -339,7 +354,7 @@ function Dashboard({ setPage }) {
               <div style={iconStyle("#f2edff", "#6941a5")}>▣</div>
             </div>
 
-            <div style={numberStyle}>{assessments.length}</div>
+            <div style={numberStyle}>{userAssessments.length}</div>
 
             <div style={descriptionStyle}>Tax assessments available</div>
 
@@ -381,7 +396,7 @@ function Dashboard({ setPage }) {
               </button>
             </div>
 
-            {properties.length > 0 ? (
+           {userProperties.length > 0 ? (
               <div
                 style={{
                   marginTop: "20px",
