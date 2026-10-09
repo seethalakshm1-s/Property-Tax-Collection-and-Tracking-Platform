@@ -14,10 +14,13 @@ public class PaymentService {
     public PaymentService(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
-
     public List<Payment> getAllPayments() {
-        return paymentRepository.findAll();
-    }
+    return paymentRepository.findAll();
+}
+
+    public List<Payment> getPaymentsByUserId(Integer userId) {
+    return paymentRepository.findPaymentsByUserId(userId);
+}
 
     public Payment getPaymentById(Integer id) {
         return paymentRepository.findById(id).orElse(null);

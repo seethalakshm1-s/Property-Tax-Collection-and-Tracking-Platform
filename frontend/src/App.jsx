@@ -1,208 +1,61 @@
+
 import { useState } from "react";
+
+import Home from "./Home";
+import Login from "./Login";
 import Register from "./Register";
 import Dashboard from "./Dashboard";
 import Property from "./Property";
 import Tax from "./Tax";
 import Payment from "./Payment";
-
+import Admin from "./Admin";
+import Receipt from "./Receipt";
+import Complaint from "./Complaint";
 function App() {
-  const [page, setPage] = useState("login");
+  const [page, setPage] = useState("home");
   const [user, setUser] = useState(null);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  switch (page) {
+    case "home":
+      return <Home setPage={setPage} />;
 
-  const handleLogin = async (e) => {
-  e.preventDefault();
+    case "login":
+      return (
+        <Login
+          setPage={setPage}
+          setUser={setUser}
+        />
+      );
 
-  if (!email || !password) {
-    alert("Please enter your email and password");
-    return;
-  }
+    case "register":
+      return <Register setPage={setPage} />;
 
-  try {
-    const response = await fetch("http://localhost:8080/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
+    case "dashboard":
+      return (
+        <Dashboard
+          setPage={setPage}
+          user={user}
+        />
+      );
 
-    if (!response.ok) {
-      alert("Invalid email or password");
-      return;
-    }
+    case "admin":
+      return <Admin setPage={setPage} />;
 
-    const loggedInUser = await response.json();
-
-    setUser(loggedInUser);
-
-    if (loggedInUser.role === "Admin") {
-      setPage("admin");
-    } else {
-      setPage("dashboard");
-    }
-  } catch (error) {
-    alert("Backend connection failed");
-  }
-};
-  if (page === "register") {
-    return <Register setPage={setPage} />;
-  }
-  if (page === "dashboard") {
-    return <Dashboard setPage={setPage} user={user} />;
-  }
-
-  if (page === "property") {
+    case "property":
       return <Property setPage={setPage} />;
+
+    case "tax":
+  return <Tax setPage={setPage} user={user} />;
+
+    case "payment":
+  return <Payment setPage={setPage} user={user} />;
+ case "receipt":
+  return <Receipt setPage={setPage} user={user} />;
+  case "complaint":
+  return <Complaint setPage={setPage} />;
+    default:
+      return <Home setPage={setPage} />;
   }
-  if (page === "tax") {
-    return <Tax setPage={setPage} />;
-}
-  if (page === "payment") {
-  return <Payment setPage={setPage} />;
-}
-  return (
-    <div className="login-page">
-
-      <header className="portal-header">
-
-        <div className="portal-brand">
-
-          <div className="portal-logo">
-            PT
-          </div>
-
-          <div>
-            <h1>Property Tax</h1>
-            <span>Collection & Tracking Platform</span>
-          </div>
-
-        </div>
-
-        <div className="header-status">
-          Online Portal
-        </div>
-
-      </header>
-
-      <main className="login-main">
-
-        <div className="login-card">
-
-          <div className="login-card-header">
-
-            <div className="login-symbol">
-              PT
-            </div>
-
-            <h2>Sign in to your account</h2>
-
-            <p>
-              Access your property tax information securely
-            </p>
-
-          </div>
-
-          <form onSubmit={handleLogin}>
-
-            <div className="form-group">
-
-              <label htmlFor="email">
-                Email Address
-              </label>
-
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-
-            </div>
-
-            <div className="form-group">
-
-              <div className="password-label">
-
-                <label htmlFor="password">
-                  Password
-                </label>
-
-                <button
-                  type="button"
-                  className="forgot-button"
-                  onClick={() =>
-                    alert(
-                      "Please contact the administrator to reset your password."
-                    )
-                  }
-                >
-                  Forgot Password?
-                </button>
-
-              </div>
-
-              <input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-
-            </div>
-
-            <button
-              type="submit"
-              className="sign-in-button"
-            >
-              Sign In
-            </button>
-
-          </form>
-
-          <div className="register-area">
-
-            <span>
-              Don't have an account?
-            </span>
-
-            <button
-              onClick={() => setPage("register")}
-            >
-              Create Account
-            </button>
-
-          </div>
-
-          <div className="security-message">
-            Your information is protected and securely managed.
-          </div>
-
-        </div>
-
-      </main>
-
-      <footer className="portal-footer">
-
-        <span>
-          Property Tax Collection & Tracking Platform
-        </span>
-
-        <span>
-          © 2026
-        </span>
-
-      </footer>
-
-    </div>
-  );
 }
 
 export default App;

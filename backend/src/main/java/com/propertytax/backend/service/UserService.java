@@ -3,9 +3,7 @@ package com.propertytax.backend.service;
 import com.propertytax.backend.entity.User;
 import com.propertytax.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 @Service
 public class UserService {
 

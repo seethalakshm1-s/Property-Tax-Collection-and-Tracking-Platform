@@ -21,6 +21,11 @@ public class TaxAssessmentController {
     public List<TaxAssessment> getAllAssessments() {
         return taxAssessmentService.getAllAssessments();
     }
+    @GetMapping("/user/{userId}")
+public List<TaxAssessment> getAssessmentsByUserId(
+        @PathVariable Integer userId) {
+    return taxAssessmentService.getAssessmentsByUserId(userId);
+}
 
     @GetMapping("/{id}")
     public TaxAssessment getAssessmentById(@PathVariable Integer id) {

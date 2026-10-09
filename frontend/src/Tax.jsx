@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from "react";
 
-function Tax({ setPage }) {
+function Tax({ setPage, user }) {
   const [assessments, setAssessments] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/tax-assessments")
+    fetch(`http://localhost:8080/api/tax-assessments/user/${user.userId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch tax assessments");
@@ -127,6 +127,7 @@ function Tax({ setPage }) {
                 <th style={headerStyle}>Balance</th>
                 <th style={headerStyle}>Due Date</th>
                 <th style={headerStyle}>Status</th>
+                <th style={headerStyle}>Action</th>
               </tr>
             </thead>
 
@@ -194,6 +195,25 @@ function Tax({ setPage }) {
                       {tax.status}
                     </span>
                   </td>
+                              <td style={cellStyle}>
+  {Number(tax.balanceAmount) > 0 && (
+    <button
+      onClick={() =>
+        alert(`Payment for Assessment ${tax.assessmentId} will be added next.`)
+      }
+      style={{
+        padding: "8px 14px",
+        backgroundColor: "#2563eb",
+        color: "white",
+        border: "none",
+        borderRadius: "6px",
+        cursor: "pointer",
+      }}
+    >
+      Pay Now
+    </button>
+  )}
+</td>     
                 </tr>
               ))}
             </tbody>

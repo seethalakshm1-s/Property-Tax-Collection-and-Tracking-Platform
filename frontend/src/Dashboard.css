@@ -1,0 +1,764 @@
+
+/* Tamil Nadu Government-inspired citizen portal */
+
+.dashboard-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  color: #252f3e;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.dashboard-page * {
+  box-sizing: border-box;
+}
+
+/* Official-style header */
+
+.dashboard-header {
+  min-height: 76px;
+  padding: 12px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  border-bottom: 3px solid #c99b35;
+}
+
+.dashboard-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #123c69;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.dashboard-brand h2 {
+  margin: 0;
+  color: #123c69;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.dashboard-brand p {
+  margin: 3px 0 0;
+  color: #586779;
+  font-size: 12px;
+}
+
+.dashboard-account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8eff7;
+  color: #123c69;
+  font-weight: 700;
+}
+
+.dashboard-account strong,
+.dashboard-account span {
+  display: block;
+}
+
+.dashboard-account strong {
+  color: #26384d;
+  font-size: 13px;
+}
+
+.dashboard-account span {
+  color: #667587;
+  font-size: 11px;
+}
+
+.logout-button {
+  margin-left: 12px;
+  padding: 9px 15px;
+  background: #ffffff;
+  color: #123c69;
+  border: 1px solid #123c69;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #123c69;
+  color: #ffffff;
+}
+
+/* Navigation-free content layout */
+
+.dashboard-main {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 25px 5% 40px;
+}
+
+/* Welcome area */
+
+.welcome-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding: 27px 30px;
+  background: #123c69;
+  color: #ffffff;
+  border-radius: 3px;
+  border-left: 5px solid #c99b35;
+}
+
+.welcome-banner h1 {
+  margin: 9px 0;
+  color: #ffffff;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.welcome-label {
+  color: #e7cc86;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.welcome-banner p {
+  max-width: 680px;
+  margin: 0;
+  color: #e2eaf3;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.welcome-icon {
+  font-size: 48px;
+}
+
+/* Section headings */
+
+.dashboard-section {
+  margin-top: 29px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #123c69;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  color: #657487;
+  font-size: 12px;
+}
+
+/* Summary cards */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.summary-card {
+  min-width: 0;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #dce3eb;
+  border-top: 3px solid #174e83;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.summary-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.summary-icon.blue {
+  background: #e8f0fa;
+  color: #174e83;
+}
+
+.summary-icon.orange {
+  background: #fbf1df;
+  color: #96610c;
+}
+
+.summary-icon.green {
+  background: #e7f4eb;
+  color: #247443;
+}
+
+.summary-icon.purple {
+  background: #eeeafa;
+  color: #6547a0;
+}
+
+.summary-card p {
+  margin: 13px 0 5px;
+  color: #536275;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.summary-card h3 {
+  margin: 0;
+  color: #123c69;
+  font-size: 24px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.summary-card > span {
+  display: block;
+  margin-top: 6px;
+  color: #778494;
+  font-size: 11px;
+}
+
+/* Government portal-style buttons */
+
+.primary-button {
+  padding: 10px 15px;
+  background: #174e83;
+  color: #ffffff;
+  border: 1px solid #174e83;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: #0d345c;
+}
+
+/* Property table */
+
+.table-container {
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #dce3eb;
+  border-radius: 3px;
+}
+
+.dashboard-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.dashboard-table th {
+  padding: 14px 17px;
+  background: #eaf0f7;
+  color: #263f5d;
+  border-bottom: 1px solid #d4deea;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+}
+
+.dashboard-table td {
+  padding: 15px 17px;
+  color: #3f4d5e;
+  border-bottom: 1px solid #e8edf2;
+  font-size: 12px;
+}
+
+.dashboard-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dashboard-table tbody tr:hover {
+  background: #f7faff;
+}
+
+.assessment-number {
+  color: #174e83 !important;
+  font-weight: 700;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 4px 9px;
+  background: #e8f0fa;
+  color: #174e83;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.empty-message {
+  padding: 28px 15px !important;
+  color: #687789 !important;
+  text-align: center;
+}
+
+/* Tax summary and quick actions */
+
+.dashboard-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+  margin-top: 26px;
+}
+
+.dashboard-panel {
+  min-width: 0;
+  padding: 21px;
+  background: #ffffff;
+  border: 1px solid #dce3eb;
+  border-radius: 3px;
+}
+
+.assessment-list {
+  margin-top: 5px;
+}
+
+.assessment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e8edf2;
+}
+
+.assessment-item > div:first-child strong,
+.assessment-item > div:first-child span {
+  display: block;
+}
+
+.assessment-item > div:first-child strong {
+  color: #263f5d;
+  font-size: 12px;
+}
+
+.assessment-item > div:first-child span {
+  margin-top: 5px;
+  color: #6c7b8d;
+  font-size: 11px;
+}
+
+.assessment-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.assessment-right strong {
+  color: #263f5d;
+  font-size: 12px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: #fff2d8;
+  color: #8a5b0b;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.status-badge.paid,
+.status-badge.success {
+  background: #e5f4e9;
+  color: #216d3d;
+}
+
+.status-badge.overdue {
+  background: #fde8e7;
+  color: #a52b26;
+}
+
+.status-badge.pending,
+.status-badge.due {
+  background: #fff2d8;
+  color: #8a5b0b;
+}
+
+.panel-message {
+  padding: 20px 0;
+  color: #687789;
+  font-size: 12px;
+}
+
+.text-button {
+  margin-top: 16px;
+  padding: 0;
+  background: transparent;
+  color: #174e83;
+  border: none;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.action-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #e8edf2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.action-button:last-child {
+  border-bottom: none;
+}
+
+.action-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #e8f0fa;
+  color: #174e83;
+  border-radius: 3px;
+  font-size: 19px;
+}
+
+.action-button > span:nth-child(2) {
+  flex: 1;
+}
+
+.action-button strong,
+.action-button small {
+  display: block;
+}
+
+.action-button strong {
+  color: #263f5d;
+  font-size: 12px;
+}
+
+.action-button small {
+  margin-top: 4px;
+  color: #6c7b8d;
+  font-size: 11px;
+}
+
+.action-arrow {
+  color: #174e83;
+  font-size: 18px;
+}
+
+/* Footer */
+
+.dashboard-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 19px 5%;
+  background: #ffffff;
+  border-top: 1px solid #dce3eb;
+  color: #657487;
+  font-size: 11px;
+}
+
+.dashboard-footer p {
+  margin: 0;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1000px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px 4%;
+  }
+
+  .dashboard-account {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-main {
+    padding: 20px 4%;
+  }
+
+  .welcome-banner {
+    padding: 23px 20px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 23px;
+  }
+
+  .welcome-icon {
+    display: none;
+  }
+
+  .summary-grid {
+    gap: 10px;
+  }
+
+  .summary-card {
+    padding: 14px;
+  }
+
+  .summary-card h3 {
+    font-size: 20px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard-panel {
+    padding: 16px;
+  }
+
+  .dashboard-footer {
+    flex-direction: column;
+  }
+}
+
+/* Fix text visibility */
+.dashboard-page {
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.dashboard-page p,
+.dashboard-page td,
+.dashboard-page th,
+.dashboard-page small {
+  line-height: 1.7;
+}
+
+.dashboard-brand h2,
+.section-heading h2,
+.summary-card h3,
+.assessment-item strong,
+.action-button strong {
+  color: #123c69;
+}
+
+.dashboard-brand p,
+.section-heading p,
+.summary-card p,
+.summary-card > span,
+.assessment-item > div:first-child span,
+.action-button small,
+.dashboard-footer {
+  color: #4b5d72;
+}
+
+/* Give Tax Summary more spacing */
+.assessment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+}
+
+.assessment-item > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.assessment-right {
+  flex: 0 0 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+}
+
+.assessment-right strong {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.status-badge {
+  min-width: 66px;
+  padding: 6px 10px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Better readability on smaller screens */
+@media (max-width: 480px) {
+  .assessment-item {
+    gap: 12px;
+  }
+
+  .assessment-right {
+    flex-basis: 105px;
+  }
+
+  .assessment-item > div:first-child strong {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Increase dashboard text sizes */
+
+.dashboard-page {
+  font-size: 16px;
+}
+
+.dashboard-brand h2 {
+  font-size: 23px;
+}
+
+.dashboard-brand p {
+  font-size: 15px;
+}
+
+.dashboard-account strong {
+  font-size: 16px;
+}
+
+.dashboard-account span {
+  font-size: 14px;
+}
+
+.welcome-label {
+  font-size: 13px;
+}
+
+.welcome-banner h1 {
+  font-size: 34px;
+}
+
+.welcome-banner p {
+  font-size: 16px;
+}
+
+.section-heading h2 {
+  font-size: 23px;
+}
+
+.section-heading p {
+  font-size: 15px;
+}
+
+.summary-card p {
+  font-size: 15px;
+}
+
+.summary-card h3 {
+  font-size: 29px;
+}
+
+.summary-card > span {
+  font-size: 14px;
+}
+
+.dashboard-table th {
+  font-size: 14px;
+}
+
+.dashboard-table td {
+  font-size: 15px;
+}
+
+.category-badge {
+  font-size: 13px;
+}
+
+.assessment-item > div:first-child strong {
+  font-size: 15px;
+}
+
+.assessment-item > div:first-child span {
+  font-size: 14px;
+}
+
+.assessment-right strong {
+  font-size: 16px;
+}
+
+.status-badge {
+  font-size: 13px;
+}
+
+.text-button {
+  font-size: 14px;
+}
+
+.action-button strong {
+  font-size: 15px;
+}
+
+.action-button small {
+  font-size: 13px;
+}
+
+.primary-button,
+.logout-button {
+  font-size: 14px;
+}
+
+.panel-message {
+  font-size: 15px;
+}
+
+.dashboard-footer {
+  font-size: 14px;
+}

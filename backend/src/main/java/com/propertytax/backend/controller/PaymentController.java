@@ -26,6 +26,10 @@ public class PaymentController {
     public Payment getPaymentById(@PathVariable Integer id) {
         return paymentService.getPaymentById(id);
     }
+    @GetMapping("/user/{userId}")
+public List<Payment> getPaymentsByUserId(@PathVariable Integer userId) {
+    return paymentService.getPaymentsByUserId(userId);
+}
 
     @PostMapping
     public Payment savePayment(@RequestBody Payment payment) {

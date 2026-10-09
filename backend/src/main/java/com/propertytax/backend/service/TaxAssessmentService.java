@@ -18,7 +18,9 @@ public class TaxAssessmentService {
     public List<TaxAssessment> getAllAssessments() {
         return taxAssessmentRepository.findAll();
     }
-
+    public List<TaxAssessment> getAssessmentsByUserId(Integer userId) {
+    return taxAssessmentRepository.findAssessmentsByUserId(userId);
+}
     public TaxAssessment getAssessmentById(Integer id) {
         return taxAssessmentRepository.findById(id).orElse(null);
     }

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-function Payment({ setPage }) {
+function Payment({ setPage, user }) {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/payments")
+    fetch(`http://localhost:8080/api/payments/user/${user.userId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch payments");
