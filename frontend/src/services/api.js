@@ -1,7 +1,8 @@
+
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://property-tax-collection-and-tracking.onrender.com",
 });
 
 export default api;
