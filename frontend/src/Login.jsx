@@ -1,6 +1,8 @@
-
 import { useState } from "react";
 import "./Login.css";
+
+const API_URL =
+  "https://property-tax-collection-and-tracking.onrender.com";
 
 function Login({ setPage, setUser }) {
   const [email, setEmail] = useState("");
@@ -20,24 +22,34 @@ function Login({ setPage, setUser }) {
 
     try {
       const response = await fetch(
-  `https://property-tax-collection-and-tracking.onrender.com/api/users/email/${encodeURIComponent(
-    email.trim()
-  )}`,
-  { signal: AbortSignal.timeout(15000) }
-);
-      if (!response.ok) {
+        `${API_URL}/api/users/email/${encodeURIComponent(
+          email.trim()
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+          signal: AbortSignal.timeout(20000),
+        }
+      );
+
+      if (response.status === 404) {
         alert("Invalid email or password");
         return;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
       }
 
       const user = await response.json();
 
-      if (user.password !== password) {
+      if (!user || user.password !== password) {
         alert("Invalid email or password");
         return;
       }
 
-      console.log("Logged in user:", user);
       setUser(user);
       alert("Login Successful");
 
@@ -47,8 +59,24 @@ function Login({ setPage, setUser }) {
         setPage("dashboard");
       }
     } catch (error) {
-      alert("Backend connection failed");
-      console.error(error);
+      console.error("Login error:", error);
+
+      if (
+        error.name === "TimeoutError" ||
+        error.name === "AbortError"
+      ) {
+        alert(
+          "Backend is taking too long to respond. Please try again."
+        );
+      } else if (error instanceof TypeError) {
+        alert(
+          "Cannot connect to the backend. Please check your internet connection and try again."
+        );
+      } else {
+        alert(
+          error.message || "Login failed. Please try again."
+        );
+      }
     } finally {
       setLoading(false);
     }
@@ -88,9 +116,7 @@ function Login({ setPage, setUser }) {
 
             <h1>Sign In</h1>
 
-            <p>
-              Sign in to your Property Tax Portal
-            </p>
+            <p>Sign in to your Property Tax Portal</p>
           </div>
 
           <form onSubmit={handleLogin}>
@@ -130,7 +156,7 @@ function Login({ setPage, setUser }) {
                   type="button"
                   className="login-toggle-password"
                   onClick={() =>
-                    setShowPassword(!showPassword)
+                    setShowPassword((previous) => !previous)
                   }
                 >
                   {showPassword ? "Hide" : "Show"}
