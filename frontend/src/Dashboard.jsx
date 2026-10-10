@@ -72,11 +72,12 @@ function Dashboard({ setPage, user }) {
       total + Number(assessment.balanceAmount ?? assessment.balance_amount ?? 0),
     0
   );
+const totalTaxPaid = userAssessments.reduce(
+  (total, assessment) =>
+    total + Number(assessment.paidAmount ?? assessment.paid_amount ?? 0),
+  0
+);
 
-  const totalTaxPaid = userPayments.reduce(
-    (total, payment) => total + Number(payment.amount ?? 0),
-    0
-  );
 
   const formatCurrency = (amount) =>
     new Intl.NumberFormat("en-IN", {

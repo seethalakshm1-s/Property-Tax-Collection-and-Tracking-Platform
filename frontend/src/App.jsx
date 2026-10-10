@@ -52,7 +52,7 @@ function App() {
  case "receipt":
   return <Receipt setPage={setPage} user={user} />;
   case "complaint":
-  return <Complaint setPage={setPage} />;
+  return <Complaint setPage={setPage} user={user} />;
     default:
       return <Home setPage={setPage} />;
   }
