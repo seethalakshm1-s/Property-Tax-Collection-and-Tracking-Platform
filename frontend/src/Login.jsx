@@ -20,11 +20,11 @@ function Login({ setPage, setUser }) {
 
     try {
       const response = await fetch(
-        `https://property-tax-collection-and-tracking.onrender.com/api/users/email/${encodeURIComponent(
-          email.trim()
-        )}`
-      );
-
+  `https://property-tax-collection-and-tracking.onrender.com/api/users/email/${encodeURIComponent(
+    email.trim()
+  )}`,
+  { signal: AbortSignal.timeout(15000) }
+);
       if (!response.ok) {
         alert("Invalid email or password");
         return;
