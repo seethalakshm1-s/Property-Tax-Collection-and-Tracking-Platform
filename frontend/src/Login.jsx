@@ -20,7 +20,7 @@ function Login({ setPage, setUser }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/users/email/${encodeURIComponent(
+        `https://property-tax-collection-and-tracking.onrender.com/api/users/email/${encodeURIComponent(
           email.trim()
         )}`
       );
